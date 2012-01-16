@@ -1,0 +1,26 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use Data::Dumper; sub p { print Dumper $_[0] };
+#use common::sense;
+#use FindBin::libs;
+
+
+
+=head1 NAME
+
+ hoge.pl
+
+=head1 SYNOPSIS
+
+ hoge.pl [-opt_baa]
+
+=head1 DESCRIPTION
+
+=head1 AUTHOR
+
+ <kuroda@paperboy.co.jp>
+
+=head1 SEE ALSO
+
+=cut
