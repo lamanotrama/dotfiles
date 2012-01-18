@@ -1,0 +1,16 @@
+class hoge {
+
+  file { '/etc/sv.conf':
+    #source  => "puppet:///dist/hoge/etc/sv.conf",
+    content => template('hoge/etc/sv.conf'),
+    mode    => 644,
+    notify  => Service['sv'];
+  }
+
+  service { 'sv':
+    enable   => true,
+    ensure   => 'running',
+    require  => '/sv.conf';
+  }
+
+}

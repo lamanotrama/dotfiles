@@ -194,6 +194,7 @@ nmap <C-K> <C-W>k
 autocmd BufNewFile *.pl 0r ~/.vim/skel/pl
 autocmd BufNewFile *.pm 0r ~/.vim/skel/pm
 autocmd BufNewFile *.sh 0r ~/.vim/skel/sh
+autocmd BufNewFile *.pp 0r ~/.vim/skel/pp
 
 "挿入モード時、ステータスラインの色を変更
 "http://sites.google.com/site/fudist/Home/vim-nihongo-ban/vim-color
