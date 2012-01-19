@@ -16,6 +16,7 @@ Bundle 'banyan/Nonopaste.vim'
 Bundle 'Puppet-Syntax-Highlighting'
 Bundle 'sudo.vim'
 Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-fugitive'
 
 syntax on
 filetype plugin on
@@ -265,6 +266,20 @@ match ZenkakuSpace /　/
 "Tab、行末の半角スペースを明示的に表示する。
 set list
 set listchars=tab:^\ ,trail:~
+
+" for Fugitive {{{
+""nnoremap ,gd    : <C-u>Gdiff<Enter>
+nnoremap ,gd    :<C-u>w<CR>:Git diff<Enter>
+nnoremap ,gdc   :<C-u>w<CR>:Git diff --cached<Enter>
+nnoremap ,gs    :<C-u>Gstatus<Enter>
+nnoremap ,gst   :<C-u>Gstatus<Enter>
+nnoremap ,gl    :<C-u>Glog<Enter>
+nnoremap ,ga    :<C-u>Gwrite<Enter>
+nnoremap ,gci   :<C-u>Gcommit -a<Enter>
+nnoremap ,gc    :<C-u>Gcommit<Enter>
+nnoremap ,gC    :<C-u>Git commit --amend<Enter>
+nnoremap ,gb    :<C-u>Gblame<Enter>
+" }}}
 
 " hasekoのやつ。http://d.hatena.ne.jp/bannyan/20111024/1319420124
 let g:nonopaste_url = "http://192.168.25.37/nonopaste/"
