@@ -3,6 +3,7 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/vundle/
 call vundle#rc()
+let g:vundle_default_git_proto = 'git'
 
 Bundle 'Align'
 Bundle 'mileszs/ack.vim'
@@ -192,7 +193,7 @@ vmap k gk
 
 ",w でそのコマンドを保存
 nmap ,w :w<CR>
-nmap ,ww :w<CR>
+" nmap ,ww :w<CR>
 ",e でそのコマンドを保存実行
 nmap ,e :w<CR>:execute '!' &ft '%'<CR>
 ",r でperl実行。
@@ -214,6 +215,9 @@ command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 "10/09/05 http://nanasi.jp/articles/vim/mru_vim.html
 let MRU_Max_Entries=30
 let MRU_Window_Height=20
+
+" 全削除
+nnoremap da :<C-u>%d<CR>
 
 " Ctrl-J/K で上下左右のWindowへ移動
 nmap <C-J> <C-W>j
