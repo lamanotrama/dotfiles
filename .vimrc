@@ -18,6 +18,7 @@ Bundle 'Puppet-Syntax-Highlighting'
 Bundle 'sudo.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
+Bundle 'Markdown'
 
 syntax on
 filetype plugin on
