@@ -313,6 +313,7 @@ let g:fuf_enumeratingLimit = 30
 let g:fuf_keyPreview = '<C-]>'
 let g:fuf_previewHeight = 0
 nmap fb :FufBuffer<CR>
+nmap fc :FufFileWithCurrentBuffer<CR>
 nmap ff :FufFile <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
 nmap fF :FufFile **/<CR>
 nmap fL :FufFile ./lib/**/<CR>
