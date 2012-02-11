@@ -196,6 +196,9 @@ let MRU_Window_Height=20
 " 全削除
 nnoremap da :<C-u>%d<CR>
 
+"Escの2回押しでハイライト消去
+nmap <ESC><ESC> :<C-u>noh<CR>
+
 " Ctrl-J/K で上下左右のWindowへ移動
 nmap <C-J> <C-W>j
 nmap <C-K> <C-W>k
