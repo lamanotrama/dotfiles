@@ -19,6 +19,8 @@ Bundle 'sudo.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Markdown'
+Bundle 'glidenote/memolist.vim'
+Bundle 'fuenor/qfixgrep'
 
 syntax on
 filetype plugin on
@@ -303,6 +305,16 @@ nmap fm :FufMruFile<CR>
 nmap fq :FufQuickfix<CR>
 nmap fl :FufLine<CR>
 nnoremap <silent> <C-]> :FufTag! <C-r>=expand('<cword>')<CR><CR>
+
+" http://blog.glidenote.com/blog/2012/03/26/memolist.vim/
+let g:memolist_path = $HOME . "/memolist"
+let g:memolist_memo_suffix = "md"
+let g:memolist_qfixgrep = "true"
+nmap mn  :MemoNew<CR>
+nmap ml  :MemoList<CR>
+nmap mg  :MemoGrep<CR>
+nmap mf  :FufFile <C-r>=expand(g:memolist_path."/")<CR><CR>
+
 
 " GNU screen likeなキーバインド
 let mapleader = "\<C-]>"
