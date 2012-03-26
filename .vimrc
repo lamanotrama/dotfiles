@@ -282,6 +282,8 @@ nmap <C-p>        : MBEbp<CR>
 " yankringとかぶるので、yankringの方を変更
 let g:yankring_replace_n_nkey = '<S-n>'
 let g:yankring_replace_n_pkey = '<S-p>'
+" http://blog.glidenote.com/blog/2012/03/21/yankring.vim-error/
+let g:yankring_manual_clipboard_check = 0
 
 " fuf *set pasteと共存不可
 let g:fuf_modesDisable = ['mrucmd']
