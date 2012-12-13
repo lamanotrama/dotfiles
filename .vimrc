@@ -18,10 +18,11 @@ Bundle 'Puppet-Syntax-Highlighting'
 Bundle 'sudo.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
-Bundle 'Markdown'
 Bundle 'glidenote/memolist.vim'
 Bundle 'fuenor/qfixgrep'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'tpope/vim-markdown'
+"Bundle 'tangledhelix/vim-octopress'
 
 syntax on
 filetype plugin on
@@ -76,6 +77,10 @@ au FileType ruby set ts=2 sts=2 sw=2
 
 " puppetはtab幅2
 au FileType puppet set ts=2 sts=2 sw=2
+
+" markdownでoctpressのsysntaxプラグインのハイライトを利用
+" 何故かうまく動かない。
+"au BufRead,BufNewFile *.md  set filetype=octpress
 
 " モードライン無効
 set modelines=0
