@@ -21,10 +21,13 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'Markdown'
 Bundle 'glidenote/memolist.vim'
 Bundle 'fuenor/qfixgrep'
+Bundle 'nathanaelkane/vim-indent-guides'
 
 syntax on
 filetype plugin on
 filetype indent on
+
+colorscheme default
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -65,6 +68,8 @@ set shiftwidth=4
 
 " psgiもperlとして
 au BufRead,BufNewFile *.psgi  set filetype=perl
+" testふぁいるもperlとして
+au BufRead,BufNewFile *.t  set filetype=perl
 
 " rubyはtab幅2
 au FileType ruby set ts=2 sts=2 sw=2
@@ -269,6 +274,14 @@ nnoremap ,gb    :<C-u>Gblame<Enter>
 
 " hasekoのやつ。http://d.hatena.ne.jp/bannyan/20111024/1319420124
 let g:nonopaste_url = "http://192.168.25.37/nonopaste/"
+
+" vim-indent-guides
+nnoremap <C-i> :<C-u>IndentGuidesToggle<Enter>
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=gray
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=blue
 
 "minibufexpl
 let g:miniBufExplMapWindowNavVim=1 "hjklで移動
