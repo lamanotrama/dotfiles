@@ -196,6 +196,11 @@ nmap ,g :w<CR>:!gcc -o ./%.out %<CR>:! ./%.out<CR>
 ",d で日付挿入
 nmap ,d :r !LANG=C date '+\%Y-\%m-\%d \%T\n'<CR>
 
+",p でベロッと貼り付けモード
+nmap ,p :set paste<CR>
+"インサートモードから抜ける時に自動的に nopaste に戻す
+autocmd InsertLeave * set nopaste
+
 " 一発リネーム
 "09/06/08 http://vim-users.jp/2009/05/hack17/
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
