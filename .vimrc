@@ -190,14 +190,14 @@ nmap ,r :w<CR>:!perl -I lib/ %<CR>
 ",t でprove実行。
 nmap ,t :w<CR>:!prove -lv %<CR>
 ",c でperlのシンタックスチェック
-nmap ,c :w<CR>:!perl -I lib/ -c %<CR>
+nmap ,c :w<CR>:!perl -Ilib -Mlib=local/lib/perl5 -Mlib=extlib/lib/perl5 -c %<CR>
 ",g でcをコンパイル、実行
 nmap ,g :w<CR>:!gcc -o ./%.out %<CR>:! ./%.out<CR>
 ",d で日付挿入
 nmap ,d :r !LANG=C date '+\%Y-\%m-\%d \%T\n'<CR>
 
 ",p でベロッと貼り付けモード
-nmap ,p :set paste<CR>
+nmap ,p :set paste<CR>i
 "インサートモードから抜ける時に自動的に nopaste に戻す
 autocmd InsertLeave * set nopaste
 
@@ -328,6 +328,10 @@ nmap fm :FufMruFile<CR>
 nmap fq :FufQuickfix<CR>
 nmap fl :FufLine<CR>
 nnoremap <silent> <C-]> :FufTag! <C-r>=expand('<cword>')<CR><CR>
+
+" syntastic
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'passive_filetypes': ['perl'] }
 
 " http://blog.glidenote.com/blog/2012/03/26/memolist.vim/
 let g:memolist_path = $HOME . "/memolist"
