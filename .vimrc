@@ -186,7 +186,7 @@ nmap ,w :w<CR>
 ",e でそのコマンドを保存実行
 nmap ,e :w<CR>:execute '!' &ft '%'<CR>
 ",r でperl実行。
-nmap ,r :w<CR>:!perl -I lib/ %<CR>
+nmap ,r :w<CR>:!perl -Ilib -Mlib=local/lib/perl5 -Mlib=extlib/lib/perl5 %<CR>
 ",t でprove実行。
 nmap ,t :w<CR>:!prove -lv %<CR>
 ",c でperlのシンタックスチェック
