@@ -22,17 +22,15 @@ Bundle 'glidenote/memolist.vim'
 Bundle 'fuenor/qfixgrep'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'tpope/vim-markdown'
+Bundle 'Lokaltog/vim-powerline'
 "Bundle 'tangledhelix/vim-octopress'
 
 syntax on
 filetype plugin on
 filetype indent on
 
+set t_Co=256
 colorscheme default
-
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -43,7 +41,7 @@ set ruler
 " always set autoindenting on
 set autoindent
 
-" keep 50 lines of command line history
+" keep 150 lines of command line history
 set history=150
 
 " dictionary
@@ -57,9 +55,6 @@ endif
 
 " :も単語の一部とみなす(module名補完用)
 set iskeyword+=:
-
-" 右クリックペーストあり
-" set paste
 
 " タブ幅の設定
 set expandtab
@@ -120,50 +115,6 @@ set hlsearch
 
 "ステータスラインを常に表示
 set laststatus=2
-
-"ステータスラインに文字コードと改行文字を表示する
-function! GetB()
-  let c = matchstr(getline('.'), '.', col('.') - 1)
-  let c = iconv(c, &enc, &fenc)
-  return String2Hex(c)
-endfunction
-
-" :help eval-examples
-" The function Nr2Hex() returns the Hex string of a number.
-func! Nr2Hex(nr)
-  let n = a:nr
-  let r = ""
-  while n
-    let r = '0123456789ABCDEF'[n % 16] . r
-    let n = n / 16
-  endwhile
-  return r
-endfunc
-
-" The function String2Hex() converts each character in a string to a two
-" character Hex string.
-func! String2Hex(str)
-  let out = ''
-  let ix = 0
-  while ix < strlen(a:str)
-    let out = out . Nr2Hex(char2nr(a:str[ix]))
-    let ix = ix + 1
-  endwhile
-  return out
-endfunc
-
-" set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']['.&ft.']'}\ %F%=%l,%c%V%8P
-if winwidth(0) >= 120
-  set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%y\ %F%=[%{GetB()}]\ %l,%c%V%8P
-else
-  set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%y\ %f%=[%{GetB()}]\ %l,%c%V%8P
-endif
-
-function! GetB()
-  let c = matchstr(getline('.'), '.', col('.') - 1)
-  let c = iconv(c, &enc, &fenc)
-  return String2Hex(c)
-endfunction
 
 " コマンドライン補間をシェルっぽく
 set wildmode=list:longest
@@ -228,38 +179,6 @@ autocmd BufNewFile *.pm 0r ~/.vim/skel/pm
 autocmd BufNewFile *.sh 0r ~/.vim/skel/sh
 autocmd BufNewFile *.pp 0r ~/.vim/skel/pp
 
-"挿入モード時、ステータスラインの色を変更
-"http://sites.google.com/site/fudist/Home/vim-nihongo-ban/vim-color
-let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=blue ctermbg=yellow cterm=none'
-
-if has('syntax')
-  augroup InsertHook
-    autocmd!
-    autocmd InsertEnter * call s:StatusLine('Enter')
-    autocmd InsertLeave * call s:StatusLine('Leave')
-  augroup END
-endif
-
-let s:slhlcmd = ''
-function! s:StatusLine(mode)
-  if a:mode == 'Enter'
-    silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
-    silent exec g:hi_insert
-  else
-    highlight clear StatusLine
-    silent exec s:slhlcmd
-  endif
-endfunction
-
-function! s:GetHighlight(hi)
-  redir => hl
-  exec 'highlight '.a:hi
-  redir END
-  let hl = substitute(hl, '[\r\n]', '', 'g')
-  let hl = substitute(hl, 'xxx', '', '')
-  return hl
-endfunction
-
 "全角スペースを表示
 highlight ZenkakuSpace ctermbg=white
 match ZenkakuSpace /　/
@@ -267,6 +186,27 @@ match ZenkakuSpace /　/
 "Tab、行末の半角スペースを明示的に表示する。
 set list
 set listchars=tab:^\ ,trail:~
+
+" vim-powerline {{{
+" スペシャルシンボルを使わない
+let g:Powerline_symbols = 'compatible'
+" シンボルを上書きする
+let g:Powerline_symbols_override = {
+\ 'LINE': 'Caret'
+\ }
+" モード名を上書きする
+let g:Powerline_mode_n = 'Normal'
+let g:Powerline_mode_i = 'Insert'
+let g:Powerline_mode_R = 'Replace'
+let g:Powerline_mode_v = 'Visual'
+let g:Powerline_mode_V = 'Visual-Line'
+let g:Powerline_mode_cv = 'Visual-Block'
+let g:Powerline_mode_s = 'Select'
+let g:Powerline_mode_S = 'Select-Line'
+let g:Powerline_mode_cs = 'Select-Block'
+" ファイルへの相対パスを表示する
+let g:Powerline_stl_path_style = 'relative'
+" }}}
 
 " for Fugitive {{{
 ""nnoremap ,gd    : <C-u>Gdiff<Enter>
@@ -341,33 +281,4 @@ nmap mn  :MemoNew<CR>
 nmap ml  :MemoList<CR>
 nmap mg  :MemoGrep<CR>
 nmap mf  :FufFile <C-r>=expand(g:memolist_path."/")<CR><CR>
-
-
-" GNU screen likeなキーバインド
-let mapleader = "\<C-]>"
-nnoremap <Leader>n          <C-w><C-w>
-nnoremap <Leader><Space>    <C-w><C-w>
-nnoremap <Leader>j          <C-w>j
-nnoremap <Leader>k          <C-w>k
-nnoremap <Leader>h          <C-w>h
-nnoremap <Leader>l          <C-w>l
-nnoremap <Leader>K          : q<CR>
-nnoremap <Leader>s          : sp<CR>
-nnoremap <Leader><Tab>      : wincmd w<CR>
-nnoremap <Leader>Q          : only<CR>
-nnoremap <Leader>w          : ls<CR>
-nnoremap <Leader><C-w>      : ls<CR>
-nnoremap <Leader>a          : e #<CR>
-nnoremap <Leader>"          : BufExp<CR>
-nnoremap <Leader>1          : e #1<CR>
-nnoremap <Leader>2          : e #2<CR>
-nnoremap <Leader>3          : e #3<CR>
-nnoremap <Leader>4          : e #4<CR>
-nnoremap <Leader>5          : e #5<CR>
-nnoremap <Leader>6          : e #6<CR>
-nnoremap <Leader>7          : e #7<CR>
-nnoremap <Leader>8          : e #8<CR>
-nnoremap <Leader>9          : e #9<CR>
-let mapleader = '\'
-
 
