@@ -226,7 +226,7 @@ nnoremap ,gb    :<C-u>Gblame<Enter>
 let g:nonopaste_url = "http://192.168.25.37/nonopaste/"
 
 " vim-indent-guides
-nnoremap <C-i> :<C-u>IndentGuidesToggle<Enter>
+nmap <C-i> :<C-u>set number!<CR>:IndentGuidesToggle<CR>
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_auto_colors = 0
