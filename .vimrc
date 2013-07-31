@@ -20,7 +20,6 @@ Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
 Bundle 'glidenote/memolist.vim'
 Bundle 'fuenor/qfixgrep'
-Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'tpope/vim-markdown'
 Bundle 'Lokaltog/vim-powerline'
 "Bundle 'bling/vim-airline'
@@ -132,6 +131,8 @@ nmap k gk
 vmap j gj
 vmap k gk
 
+" tabでsetnumをトグル
+nmap <C-i> :<C-u>set number!<CR>
 ",w でそのコマンドを保存
 nmap ,w :w<CR>
 " nmap ,ww :w<CR>
@@ -226,13 +227,6 @@ nnoremap ,gb    :<C-u>Gblame<Enter>
 " hasekoのやつ。http://d.hatena.ne.jp/bannyan/20111024/1319420124
 let g:nonopaste_url = "http://192.168.25.37/nonopaste/"
 
-" vim-indent-guides
-nmap <C-i> :<C-u>set number!<CR>:IndentGuidesToggle<CR>
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=gray
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=blue
 
 "minibufexpl
 let g:miniBufExplMapWindowNavVim=1 "hjklで移動
