@@ -22,7 +22,8 @@ Bundle 'glidenote/memolist.vim'
 Bundle 'fuenor/qfixgrep'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'tpope/vim-markdown'
-Bundle 'Lokaltog/vim-powerline'
+"Bundle 'Lokaltog/vim-powerline'
+Bundle 'bling/vim-airline'
 "Bundle 'tangledhelix/vim-octopress'
 
 syntax on
