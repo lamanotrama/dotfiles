@@ -22,6 +22,7 @@ Bundle 'glidenote/memolist.vim'
 Bundle 'fuenor/qfixgrep'
 Bundle 'tpope/vim-markdown'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'joker1007/vim-markdown-quote-syntax'
 "Bundle 'bling/vim-airline'
 "Bundle 'tangledhelix/vim-octopress'
 
